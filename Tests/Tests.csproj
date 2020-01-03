@@ -4,6 +4,16 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
 
     <IsPackable>false</IsPackable>
+
+    <AssemblyName>SharedLibraryTests</AssemblyName>
+
+    <RootNamespace>InjectorGames.SharedLibrary.Tests</RootNamespace>
+
+    <Authors>Nikita Fediuchin</Authors>
+
+    <Company>Injector Games</Company>
+
+    <RepositoryUrl>https://github.com/InjectorGames/SharedLibrary-CSharp</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
