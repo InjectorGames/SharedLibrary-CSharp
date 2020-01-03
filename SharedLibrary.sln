@@ -3,12 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29609.76
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{FC5F706C-B4A3-4636-A65A-3F231D7DEF35}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedLibraryTests", "Tests\SharedLibraryTests.csproj", "{FC5F706C-B4A3-4636-A65A-3F231D7DEF35}"
 	ProjectSection(ProjectDependencies) = postProject
 		{B923EE6C-C7B3-426E-8963-BEB6A18516DC} = {B923EE6C-C7B3-426E-8963-BEB6A18516DC}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library", "Library\Library.csproj", "{B923EE6C-C7B3-426E-8963-BEB6A18516DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedLibrary", "Library\SharedLibrary.csproj", "{B923EE6C-C7B3-426E-8963-BEB6A18516DC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
