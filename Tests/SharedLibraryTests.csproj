@@ -5,7 +5,7 @@
 
     <IsPackable>false</IsPackable>
 
-    <AssemblyName>SharedLibraryTests</AssemblyName>
+    <AssemblyName>InjectorGames.SharedLibrary.Tests</AssemblyName>
 
     <RootNamespace>InjectorGames.SharedLibrary.Tests</RootNamespace>
 
@@ -14,6 +14,24 @@
     <Company>Injector Games</Company>
 
     <RepositoryUrl>https://github.com/InjectorGames/SharedLibrary-CSharp</RepositoryUrl>
+
+    <PackageId>InjectorGames.SharedLibrary.Tests</PackageId>
+
+    <Product>Shared Library Tests</Product>
+
+    <PackageProjectUrl>https://github.com/InjectorGames/SharedLibrary-CSharp</PackageProjectUrl>
+
+    <Copyright></Copyright>
+
+    <Description>Open-source C# library with various containers, classes, interfaces</Description>
+
+    <RepositoryType>Git</RepositoryType>
+
+    <NeutralLanguage>en</NeutralLanguage>
+
+    <PackageTags>injector, games, open, source, shared, library, tests</PackageTags>
+
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -24,7 +42,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Library\SharedLibrary.csproj" />
+    <ProjectReference Include="..\Library\InjectorGames.SharedLibrary.csproj" />
   </ItemGroup>
 
 </Project>

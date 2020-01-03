@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>InjectorGames.SharedLibrary</RootNamespace>
+    <PackageId>InjectorGames.SharedLibrary</PackageId>
+    <Authors>Nikita Fediuchin</Authors>
+    <Company>Injector Games</Company>
+    <Product>Shared Library</Product>
+    <PackageProjectUrl></PackageProjectUrl>
+    <RepositoryUrl>https://github.com/InjectorGames/SharedLibrary-CSharp</RepositoryUrl>
+    <AssemblyName>InjectorGames.SharedLibrary</AssemblyName>
+    <Version>1.0.0</Version>
+    <Description>Open-source C# library with various containers, classes, interfaces</Description>
+    <Copyright></Copyright>
+    <PackageTags>injector, games, open, source, shared, library</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <SignAssembly>false</SignAssembly>
+    <DelaySign>false</DelaySign>
+    <RepositoryType>Git</RepositoryType>
+    <NeutralLanguage>en</NeutralLanguage>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>

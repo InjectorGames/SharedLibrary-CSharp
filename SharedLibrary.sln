@@ -8,7 +8,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedLibraryTests", "Tests
 		{B923EE6C-C7B3-426E-8963-BEB6A18516DC} = {B923EE6C-C7B3-426E-8963-BEB6A18516DC}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharedLibrary", "Library\SharedLibrary.csproj", "{B923EE6C-C7B3-426E-8963-BEB6A18516DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InjectorGames.SharedLibrary", "Library\InjectorGames.SharedLibrary.csproj", "{B923EE6C-C7B3-426E-8963-BEB6A18516DC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

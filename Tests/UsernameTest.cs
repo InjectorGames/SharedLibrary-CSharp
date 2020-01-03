@@ -8,6 +8,30 @@ namespace InjectorGames.SharedLibrary.Tests
     public class UsernameTest
     {
         [TestMethod]
+        public void TestConstructor()
+        {
+            var value = "test_username123";
+            var username = new Username(value);
+            Assert.AreEqual(value, (string)username);
+        }
+
+        [TestMethod]
+        public void TestEquality()
+        {
+            var value = "test_username123";
+            var username = new Username(value);
+            Assert.IsTrue(value == username);
+        }
+
+        [TestMethod]
+        public void TestNotEquality()
+        {
+            var value = "test_username123";
+            var username = new Username(value);
+            Assert.IsFalse(value != username);
+        }
+
+        [TestMethod]
         public void TestToString()
         {
             var value = "test_username123";
@@ -91,7 +115,6 @@ namespace InjectorGames.SharedLibrary.Tests
                 using (var binaryWriter = new BinaryWriter(memoryStream))
                 {
                     username.ToBytes(binaryWriter);
-
                     binaryWriter.Seek(0, SeekOrigin.Begin);
 
                     using (var binaryReader = new BinaryReader(memoryStream))
@@ -114,7 +137,6 @@ namespace InjectorGames.SharedLibrary.Tests
                 using (var binaryWriter = new BinaryWriter(memoryStream))
                 {
                     username.ToBytes(binaryWriter);
-
                     binaryWriter.Seek(0, SeekOrigin.Begin);
 
                     using (var binaryReader = new BinaryReader(memoryStream))
