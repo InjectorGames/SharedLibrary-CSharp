@@ -2,7 +2,6 @@ using InjectorGames.SharedLibrary.Logs;
 using InjectorGames.SharedLibrary.Logs.Files;
 using InjectorGames.SharedLibrary.Times;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using System.IO;
 
 namespace InjectorGames.SharedLibrary.Tests
@@ -13,56 +12,48 @@ namespace InjectorGames.SharedLibrary.Tests
         public const string path = "unit-tests-logs/";
 
         [TestMethod]
-        public void TestLogging()
+        public void Logging()
         {
             var clock = new Clock();
             clock.Start();
 
-            var logger = new FileLogger(clock, LogType.All, false, path) as ILogger;
+            var logger = new FileLogger(true, path, clock, LogType.All) as ILogger;
 
             if (logger.Log(LogType.Trace))
-                logger.Trace("Test Trace");
+                logger.Trace("Test Trace.");
             if (logger.Log(LogType.Debug))
-                logger.Debug("Test Debug");
+                logger.Debug("Test Debug.");
             if (logger.Log(LogType.Info))
-                logger.Info("Test Info");
+                logger.Info("Test Info.");
             if (logger.Log(LogType.Warning))
-                logger.Warning("Test Warning");
+                logger.Warning("Test Warning.");
             if (logger.Log(LogType.Error))
-                logger.Error("Test Error");
+                logger.Error("Test Error.");
             if (logger.Log(LogType.Fatal))
-                logger.Error("Test Fatal");
+                logger.Error("Test Fatal.");
 
             logger.Level = LogType.Info;
             if (logger.Log(LogType.Info))
-                logger.Info("Test Info Equality");
+                logger.Info("Test Info Equality.");
 
             logger.Level = LogType.Off;
             if (logger.Log(LogType.Error))
-                logger.Error("Test Off");
+                logger.Error("Test Off.");
 
             logger.Close();
 
             var files = Directory.GetFiles(path);
             var lines = File.ReadAllLines(files[0]);
 
-            if (lines.Length != 7)
-                throw new Exception("Wrong log line count");
-
-            if (!lines[0].Contains("Trace") || !lines[0].Contains("Test Trace"))
-                throw new Exception("Not full trace log message");
-            if (!lines[1].Contains("Debug") || !lines[1].Contains("Test Debug"))
-                throw new Exception("Not full debug log message");
-            if (!lines[2].Contains("Info") || !lines[2].Contains("Test Info"))
-                throw new Exception("Not full info log message");
-            if (!lines[3].Contains("Warning") || !lines[3].Contains("Test Warning"))
-                throw new Exception("Not full warning log message");
-            if (!lines[4].Contains("Error") || !lines[4].Contains("Test Error"))
-                throw new Exception("Not full error log message");
-            if (!lines[5].Contains("Fatal") || !lines[5].Contains("Test Fatal"))
-                throw new Exception("Not full fatal log message");
-            if (!lines[6].Contains("Info") || !lines[6].Contains("Test Info Equality"))
-                throw new Exception("Not full info equality log message");
+            Assert.AreEqual(9, lines.Length);
+            Assert.IsTrue(lines[0].Contains("Info") && lines[0].Contains("Started file logger stream."));
+            Assert.IsTrue(lines[1].Contains("Trace") && lines[1].Contains("Test Trace."));
+            Assert.IsTrue(lines[2].Contains("Debug") && lines[2].Contains("Test Debug."));
+            Assert.IsTrue(lines[3].Contains("Info") && lines[3].Contains("Test Info."));
+            Assert.IsTrue(lines[4].Contains("Warning") && lines[4].Contains("Test Warning."));
+            Assert.IsTrue(lines[5].Contains("Error") && lines[5].Contains("Test Error."));
+            Assert.IsTrue(lines[6].Contains("Fatal") && lines[6].Contains("Test Fatal."));
+            Assert.IsTrue(lines[7].Contains("Info") && lines[7].Contains("Test Info Equality."));
         }
 
         [TestCleanup]

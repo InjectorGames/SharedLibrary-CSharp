@@ -12,34 +12,37 @@ namespace InjectorGames.SharedLibrary.Logs.Files
     public class FileLogger : Logger, IFileLogger
     {
         /// <summary>
-        /// Logger clock
+        /// Log file path
         /// </summary>
-        protected readonly IClock clock;
+        protected readonly string logFilePath;
         /// <summary>
         /// Logger file stream
         /// </summary>
         protected readonly FileStream stream;
 
         /// <summary>
-        /// Logger clock
+        /// Log file path
         /// </summary>
-        public IClock Clock => clock;
+        public string LogFilePath => logFilePath;
+        /// <summary>
+        /// Write log messages to the console
+        /// </summary>
+        public bool WriteToConsole { get; set; }
 
         /// <summary>
         /// Creates a new file stream logger class instance
         /// </summary>
-        public FileLogger(IClock clock, LogType level, bool writeToConsole, string logFolderPath)
+        public FileLogger(bool writeToConsole, string logFolderPath, IClock clock, LogType level = LogType.All) : base(clock, level)
         {
-            this.clock = clock ?? throw new ArgumentNullException();
-
-            Level = level;
             WriteToConsole = writeToConsole;
 
             if (!Directory.Exists(logFolderPath))
                 Directory.CreateDirectory(logFolderPath);
 
-            var filePath = logFolderPath + DateTime.Now.ToString("yyyy-M-dd_HH-mm-ss");
-            stream = new FileStream(filePath, FileMode.CreateNew, FileAccess.Write);
+            logFilePath = logFolderPath + DateTime.Now.ToString("yyyy-M-dd_HH-mm-ss");
+            stream = new FileStream(logFilePath, FileMode.CreateNew, FileAccess.Write);
+
+            Info("Started file logger stream.");
         }
 
         /// <summary>
@@ -48,13 +51,11 @@ namespace InjectorGames.SharedLibrary.Logs.Files
         public override void Close()
         {
             lock (stream)
+            {
+                Info("Closing file logger stream...");
                 stream.Close();
+            }
         }
-
-        /// <summary>
-        /// Returns true if logger should log this level
-        /// </summary>
-        public override bool Log(LogType level) { return level <= Level; }
 
         /// <summary>
         /// Logs a new message at fatal log level

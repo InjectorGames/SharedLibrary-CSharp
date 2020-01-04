@@ -76,14 +76,14 @@ namespace InjectorGames.SharedLibrary.Credentials
             return value.Equals(((Token)obj).value);
         }
         /// <summary>
-        /// Returns username hash code 
+        /// Returns token hash code 
         /// </summary>
         public override int GetHashCode()
         {
             return value.GetHashCode();
         }
         /// <summary>
-        /// Returns username string value
+        /// Returns token string value
         /// </summary>
         public override string ToString()
         {

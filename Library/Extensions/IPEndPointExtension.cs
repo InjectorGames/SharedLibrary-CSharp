@@ -11,15 +11,15 @@ namespace InjectorGames.SharedLibrary.Extensions
         /// <summary>
         /// IPEndPoint byte array size in the bytes
         /// </summary>
-        public const int ByteSize = IPAddressExtension.ByteSize + sizeof(int);
+        public const int ByteSize = IPAddressExtension.ByteSize + sizeof(ushort);
 
         /// <summary>
         /// Converts IPEndPoint value to the byte array
         /// </summary>
         public static void ToBytes(this IPEndPoint ipEndPoint, BinaryWriter binaryWrite)
         {
-            ipEndPoint.ToBytes(binaryWrite);
-            binaryWrite.Write(ipEndPoint.Port);
+            ipEndPoint.Address.ToBytes(binaryWrite);
+            binaryWrite.Write((ushort)ipEndPoint.Port);
         }
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace InjectorGames.SharedLibrary.Extensions
         /// </summary>
         public static IPEndPoint FromBytes(BinaryReader binaryReader)
         {
-            return new IPEndPoint(IPAddressExtension.FromBytes(binaryReader), binaryReader.ReadInt32());
+            return new IPEndPoint(IPAddressExtension.FromBytes(binaryReader), binaryReader.ReadUInt16());
         }
     }
 }

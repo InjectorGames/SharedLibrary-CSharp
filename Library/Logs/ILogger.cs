@@ -1,4 +1,6 @@
-﻿namespace InjectorGames.SharedLibrary.Logs
+﻿using InjectorGames.SharedLibrary.Times;
+
+namespace InjectorGames.SharedLibrary.Logs
 {
     /// <summary>
     /// Logger interface
@@ -10,9 +12,9 @@
         /// </summary>
         LogType Level { get; set; }
         /// <summary>
-        /// Write log messages to the console
+        /// Logger clock
         /// </summary>
-        bool WriteToConsole { get; set; }
+        IClock Clock { get; }
 
         /// <summary>
         /// Closes logger

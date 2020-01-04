@@ -18,8 +18,8 @@ namespace InjectorGames.SharedLibrary.Credentials
         /// </summary>
         public static byte[] ToSHA512(byte[] array)
         {
-            using var encryptor = SHA512.Create();
-            return encryptor.ComputeHash(array);
+            using (var encryptor = SHA512.Create())
+                return encryptor.ComputeHash(array);
         }
         /// <summary>
         /// Returns byte array SHA512 hash value
@@ -56,8 +56,8 @@ namespace InjectorGames.SharedLibrary.Credentials
         /// </summary>
         public static void FillWithSecureRandom(byte[] array)
         {
-            using var rngCsp = new RNGCryptoServiceProvider();
-            rngCsp.GetBytes(array);
+            using (var rngCsp = new RNGCryptoServiceProvider())
+                rngCsp.GetBytes(array);
         }
         /// <summary>
         /// Returns an array of bytes with a cryptographically strong sequence of random values
@@ -65,8 +65,7 @@ namespace InjectorGames.SharedLibrary.Credentials
         public static byte[] GetSecureRandom(int size)
         {
             var array = new byte[size];
-            using var rngCsp = new RNGCryptoServiceProvider();
-            rngCsp.GetBytes(array);
+            FillWithSecureRandom(array);
             return array;
         }
     }

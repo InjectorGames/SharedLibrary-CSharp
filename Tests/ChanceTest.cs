@@ -7,7 +7,7 @@ namespace InjectorGames.SharedLibrary.Tests
     public class ChanceTest
     {
         [TestMethod]
-        public void TestConstructor()
+        public void Constructor()
         {
             var value = 12.345f;
             var chance = new Chance(value);
@@ -15,7 +15,7 @@ namespace InjectorGames.SharedLibrary.Tests
         }
 
         [TestMethod]
-        public void TestBorder()
+        public void Border()
         {
             var isThrowed = false;
             try { _ = new Chance(12.345f); }
@@ -24,7 +24,7 @@ namespace InjectorGames.SharedLibrary.Tests
         }
 
         [TestMethod]
-        public void TestUpperBorder()
+        public void UpperBorder()
         {
             var isThrowed = false;
             try { _ = new Chance(123.456f); }
@@ -33,7 +33,7 @@ namespace InjectorGames.SharedLibrary.Tests
         }
 
         [TestMethod]
-        public void TestLowerBorder()
+        public void LowerBorder()
         {
             var isThrowed = false;
             try { _ = new Chance(-0.123f); }

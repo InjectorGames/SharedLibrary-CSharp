@@ -1,4 +1,7 @@
-﻿namespace InjectorGames.SharedLibrary.Logs
+﻿using InjectorGames.SharedLibrary.Times;
+using System;
+
+namespace InjectorGames.SharedLibrary.Logs
 {
     /// <summary>
     /// Abstract logger class
@@ -6,23 +9,38 @@
     public abstract class Logger : ILogger
     {
         /// <summary>
+        /// Logger clock
+        /// </summary>
+        protected readonly IClock clock;
+
+        /// <summary>
+        /// Logger clock
+        /// </summary>
+        public IClock Clock => clock;
+
+        /// <summary>
         /// Logger logging level
         /// </summary>
         public LogType Level { get; set; }
+
         /// <summary>
-        /// Write log messages to the console
+        /// Creates a new abstract logger class instance
         /// </summary>
-        public bool WriteToConsole { get; set; }
+        public Logger(IClock clock, LogType level = LogType.All)
+        {
+            this.clock = clock ?? throw new ArgumentNullException();
+            Level = level;
+        }
 
         /// <summary>
         /// Closes logger
         /// </summary>
-        public abstract void Close();
+        public virtual void Close() { Info("Logger closed."); }
 
         /// <summary>
         /// Returns true if logger should log this level
         /// </summary>
-        public abstract bool Log(LogType level);
+        public virtual bool Log(LogType level) { return level <= Level; }
 
         /// <summary>
         /// Logs a new message at fatal log level

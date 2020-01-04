@@ -1,6 +1,4 @@
-﻿using InjectorGames.SharedLibrary.Times;
-
-namespace InjectorGames.SharedLibrary.Logs.Files
+﻿namespace InjectorGames.SharedLibrary.Logs.Files
 {
     /// <summary>
     /// File logger interface
@@ -8,8 +6,12 @@ namespace InjectorGames.SharedLibrary.Logs.Files
     public interface IFileLogger : ILogger
     {
         /// <summary>
-        /// Logger clock
+        /// Log file path
         /// </summary>
-        IClock Clock { get; }
+        string LogFilePath { get; }
+        /// <summary>
+        /// Write log messages to the console
+        /// </summary>
+        bool WriteToConsole { get; set; }
     }
 }

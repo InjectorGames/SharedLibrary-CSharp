@@ -21,7 +21,7 @@ namespace InjectorGames.SharedLibrary.Extensions
         /// <summary>
         /// IPAddress byte array size in the bytes
         /// </summary>
-        public const int ByteSize = IPv6ByteSize;
+        public const int ByteSize = sizeof(byte) + IPv6ByteSize;
 
         /// <summary>
         /// Converts IPAddress value to the byte array
@@ -35,7 +35,7 @@ namespace InjectorGames.SharedLibrary.Extensions
                 var bytes = address.GetAddressBytes();
                 binaryWriter.Write((byte)addressFamily);
                 binaryWriter.Write(bytes, 0, IPv4ByteSize);
-                binaryWriter.Seek(ByteSize - IPv4ByteSize, SeekOrigin.Current);
+                binaryWriter.Seek(IPv6ByteSize - IPv4ByteSize, SeekOrigin.Current);
             }
             else if (addressFamily == AddressFamily.InterNetworkV6)
             {
@@ -59,7 +59,7 @@ namespace InjectorGames.SharedLibrary.Extensions
             if (addressFamily == AddressFamily.InterNetwork)
             {
                 var bytes = binaryReader.ReadBytes(IPv4ByteSize);
-                binaryReader.BaseStream.Seek(ByteSize - IPv4ByteSize, SeekOrigin.Current);
+                binaryReader.BaseStream.Seek(IPv6ByteSize - IPv4ByteSize, SeekOrigin.Current);
                 return new IPAddress(bytes);
             }
             else if (addressFamily == AddressFamily.InterNetworkV6)

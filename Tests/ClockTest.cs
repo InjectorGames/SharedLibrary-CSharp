@@ -8,7 +8,7 @@ namespace InjectorGames.SharedLibrary.Tests
     public class ClockTest
     {
         [TestMethod]
-        public void TestTicking()
+        public void Ticking()
         {
             var clock = new Clock();
             clock.Start();

@@ -10,10 +10,10 @@
     <PackageProjectUrl></PackageProjectUrl>
     <RepositoryUrl>https://github.com/InjectorGames/SharedLibrary-CSharp</RepositoryUrl>
     <AssemblyName>InjectorGames.SharedLibrary</AssemblyName>
-    <Version>1.0.0</Version>
-    <Description>Open-source C# library with various containers, classes, interfaces</Description>
+    <Version>1.1.0</Version>
+    <Description>Open-source C# shared library with various containers, classes, interfaces</Description>
     <Copyright></Copyright>
-    <PackageTags>injector, games, open, source, shared, library</PackageTags>
+    <PackageTags>injector, games, open, source, shared, development, useful, library</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <SignAssembly>false</SignAssembly>
@@ -21,6 +21,12 @@
     <RepositoryType>Git</RepositoryType>
     <NeutralLanguage>en</NeutralLanguage>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PackageReleaseNotes>*Fixed critical byte conversion bugs
+*Added console logger class</PackageReleaseNotes>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile></DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

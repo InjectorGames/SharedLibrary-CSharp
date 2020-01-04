@@ -12,10 +12,6 @@ namespace InjectorGames.SharedLibrary.Credentials
     public class EmailAddress : IByteArray, IComparable, IComparable<EmailAddress>, IEquatable<EmailAddress>
     {
         /// <summary>
-        /// Email address byte array size (1 size + 255 address)
-        /// </summary>
-        public const int ByteSize = 256;
-        /// <summary>
         /// Minimum length of the email address (custom limitation)
         /// </summary>
         public const int MinLength = 5;
@@ -23,9 +19,13 @@ namespace InjectorGames.SharedLibrary.Credentials
         /// Maximum length of the email address (custom limitation)
         /// </summary>
         public const int MaxLength = 255;
+        /// <summary>
+        /// Email address byte array size
+        /// </summary>
+        public const int ByteSize = sizeof(byte) + MaxLength;
 
         /// <summary>
-        /// Email address byte array size (1 size + 255 address)
+        /// Email address byte array size
         /// </summary>
         public int ByteArraySize => ByteSize;
 
@@ -55,7 +55,7 @@ namespace InjectorGames.SharedLibrary.Credentials
         {
             var addressLength = binaryReader.ReadByte();
             var bytes = binaryReader.ReadBytes(addressLength);
-            binaryReader.BaseStream.Seek(ByteSize - addressLength, SeekOrigin.Current);
+            binaryReader.BaseStream.Seek(MaxLength - addressLength, SeekOrigin.Current);
 
             value = Encoding.ASCII.GetString(bytes);
 
@@ -118,7 +118,7 @@ namespace InjectorGames.SharedLibrary.Credentials
 
             var bytes = Encoding.ASCII.GetBytes(value);
             binaryWriter.Write(bytes);
-            binaryWriter.Seek(ByteSize - length, SeekOrigin.Current);
+            binaryWriter.Seek(MaxLength - length, SeekOrigin.Current);
         }
 
         /// <summary>

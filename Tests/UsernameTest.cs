@@ -8,7 +8,7 @@ namespace InjectorGames.SharedLibrary.Tests
     public class UsernameTest
     {
         [TestMethod]
-        public void TestConstructor()
+        public void Constructor()
         {
             var value = "test_username123";
             var username = new Username(value);
@@ -16,23 +16,23 @@ namespace InjectorGames.SharedLibrary.Tests
         }
 
         [TestMethod]
-        public void TestEquality()
+        public void Equality()
         {
-            var value = "test_username123";
-            var username = new Username(value);
-            Assert.IsTrue(value == username);
+            var firstUsername = new Username("test_username2");
+            var secondUsername = new Username("test_username2");
+            Assert.AreEqual(firstUsername, secondUsername);
         }
 
         [TestMethod]
-        public void TestNotEquality()
+        public void NotEquality()
         {
-            var value = "test_username123";
-            var username = new Username(value);
-            Assert.IsFalse(value != username);
+            var firstUsername = new Username("first_username2");
+            var secondUsername = new Username("second_username2");
+            Assert.AreNotEqual(firstUsername, secondUsername);
         }
 
         [TestMethod]
-        public void TestToString()
+        public void String()
         {
             var value = "test_username123";
             var username = new Username(value);
@@ -40,7 +40,7 @@ namespace InjectorGames.SharedLibrary.Tests
         }
 
         [TestMethod]
-        public void TestHashCode()
+        public void HashCode()
         {
             var value = "test_username456";
             var username = new Username(value);
@@ -48,7 +48,7 @@ namespace InjectorGames.SharedLibrary.Tests
         }
 
         [TestMethod]
-        public void TestSpaceLetters()
+        public void SpaceLetters()
         {
             var isThrowed = false;
             try { _ = new Username("test username123"); }
@@ -57,7 +57,7 @@ namespace InjectorGames.SharedLibrary.Tests
         }
 
         [TestMethod]
-        public void TestBigLetters()
+        public void BigLetters()
         {
             var isThrowed = false;
             try { _ = new Username("test_Username123"); }
@@ -66,7 +66,7 @@ namespace InjectorGames.SharedLibrary.Tests
         }
 
         [TestMethod]
-        public void TestAlphanumericLetters()
+        public void AlphanumericLetters()
         {
             var isThrowed = false;
             try { _ = new Username("test.username123"); }
@@ -75,58 +75,57 @@ namespace InjectorGames.SharedLibrary.Tests
         }
 
         [TestMethod]
-        public void TestToBytes()
+        public void UpperBound()
         {
-            var username = new Username("test_username1");
-            var bytes = new byte[Username.ByteSize];
-
-            using (var binaryWriter = new BinaryWriter(new MemoryStream(bytes)))
-                username.ToBytes(binaryWriter);
-
-            // ASCII Symbols: 116 == 't', 95 == '_', 0 == null
-            Assert.AreEqual(116, bytes[0]);
-            Assert.AreEqual(95, bytes[4]);
-            Assert.AreEqual(0, bytes[14]);
+            var isThrowed = false;
+            try { _ = new Username("012345678910111213"); }
+            catch { isThrowed = true; }
+            Assert.IsTrue(isThrowed);
         }
 
         [TestMethod]
-        public void TestToBytesFull()
+        public void LowerBound()
         {
-            var username = new Username("test_username123");
-            var bytes = new byte[Username.ByteSize];
-
-            using (var binaryWriter = new BinaryWriter(new MemoryStream(bytes)))
-                username.ToBytes(binaryWriter);
-
-            // ASCII Symbols: 116 == 't', 95 == '_'
-            Assert.AreEqual(116, bytes[0]);
-            Assert.AreEqual(95, bytes[4]);
+            var isThrowed = false;
+            try { _ = new Username("012"); }
+            catch { isThrowed = true; }
+            Assert.IsTrue(isThrowed);
         }
 
         [TestMethod]
-        public void TestFromBytes()
+        public void ByteConversion()
         {
-            var value = "test_username2";
+            var value = "test_username1";
             var username = new Username(value);
-            var bytes = new byte[Username.ByteSize];
+            var bytes = new byte[username.ByteArraySize];
 
             using (var memoryStream = new MemoryStream(bytes))
             {
                 using (var binaryWriter = new BinaryWriter(memoryStream))
                 {
                     username.ToBytes(binaryWriter);
+                    Assert.AreEqual(username.ByteArraySize, memoryStream.Position);
+
                     binaryWriter.Seek(0, SeekOrigin.Begin);
 
                     using (var binaryReader = new BinaryReader(memoryStream))
+                    {
                         username = new Username(binaryReader);
+                        Assert.AreEqual(username.ByteArraySize, memoryStream.Position);
+                    }
                 }
             }
 
-            Assert.AreEqual(value, username.ToString());
+            // ASCII Symbols: 116 == 't', 95 == '_', 0 == null
+            Assert.AreEqual(116, bytes[0]);
+            Assert.AreEqual(95, bytes[4]);
+            Assert.AreEqual(0, bytes[14]);
+
+            Assert.AreEqual(value, (string)username);
         }
 
         [TestMethod]
-        public void TestFromBytesFull()
+        public void ByteConversion_Full()
         {
             var value = "test_username123";
             var username = new Username(value);
@@ -137,14 +136,23 @@ namespace InjectorGames.SharedLibrary.Tests
                 using (var binaryWriter = new BinaryWriter(memoryStream))
                 {
                     username.ToBytes(binaryWriter);
+                    Assert.AreEqual(Username.ByteSize, memoryStream.Position);
+
                     binaryWriter.Seek(0, SeekOrigin.Begin);
 
                     using (var binaryReader = new BinaryReader(memoryStream))
+                    {
                         username = new Username(binaryReader);
+                        Assert.AreEqual(Username.ByteSize, memoryStream.Position);
+                    }
                 }
             }
 
-            Assert.AreEqual(value, username.ToString());
+            // ASCII Symbols: 116 == 't', 95 == '_'
+            Assert.AreEqual(116, bytes[0]);
+            Assert.AreEqual(95, bytes[4]);
+
+            Assert.AreEqual(value, (string)username);
         }
     }
 }
