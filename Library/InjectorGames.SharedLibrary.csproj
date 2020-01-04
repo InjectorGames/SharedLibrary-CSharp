@@ -10,7 +10,7 @@
     <PackageProjectUrl></PackageProjectUrl>
     <RepositoryUrl>https://github.com/InjectorGames/SharedLibrary-CSharp</RepositoryUrl>
     <AssemblyName>InjectorGames.SharedLibrary</AssemblyName>
-    <Version>1.1.0</Version>
+    <Version>1.1.1</Version>
     <Description>Open-source C# shared library with various containers, classes, interfaces</Description>
     <Copyright></Copyright>
     <PackageTags>injector, games, open, source, shared, development, useful, library</PackageTags>
@@ -21,12 +21,13 @@
     <RepositoryType>Git</RepositoryType>
     <NeutralLanguage>en</NeutralLanguage>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-    <PackageReleaseNotes>*Fixed critical byte conversion bugs
-*Added console logger class</PackageReleaseNotes>
+    <PackageReleaseNotes>*Changed email address max value to the "64"
+*Switched to the release library version to enable code optimization</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile></DocumentationFile>
+    <Optimize>false</Optimize>
   </PropertyGroup>
 
   <ItemGroup>

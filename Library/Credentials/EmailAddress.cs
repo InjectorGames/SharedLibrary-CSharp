@@ -12,13 +12,13 @@ namespace InjectorGames.SharedLibrary.Credentials
     public class EmailAddress : IByteArray, IComparable, IComparable<EmailAddress>, IEquatable<EmailAddress>
     {
         /// <summary>
-        /// Minimum length of the email address (custom limitation)
+        /// Minimum length of the email address
         /// </summary>
         public const int MinLength = 5;
         /// <summary>
-        /// Maximum length of the email address (custom limitation)
+        /// Maximum length of the email address (average length)
         /// </summary>
-        public const int MaxLength = 255;
+        public const int MaxLength = 64;
         /// <summary>
         /// Email address byte array size
         /// </summary>
@@ -40,13 +40,13 @@ namespace InjectorGames.SharedLibrary.Credentials
         public EmailAddress(string address)
         {
             if (!IsValidLength(address.Length))
-                throw new ArgumentException("Invalid email address length");
+                throw new ArgumentException("Incorrect email address length");
 
             value = address;
 
             var mailAddress = new MailAddress(address);
             if (address != mailAddress.Address)
-                throw new ArgumentException("Invalid email address");
+                throw new ArgumentException("Incorrect email address");
         }
         /// <summary>
         /// Creates a new email address container class instance
@@ -61,7 +61,7 @@ namespace InjectorGames.SharedLibrary.Credentials
 
             var mailAddress = new MailAddress(value);
             if (value != mailAddress.Address)
-                throw new ArgumentException("Invalid email address");
+                throw new ArgumentException("Incorrect email address");
         }
 
         /// <summary>
