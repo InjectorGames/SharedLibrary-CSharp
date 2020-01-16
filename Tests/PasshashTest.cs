@@ -10,16 +10,16 @@ namespace InjectorGames.SharedLibrary.Tests
         [TestMethod]
         public void Equality()
         {
-            var firstValue = Passhash.PasswordToPasshash("Str0ngPassw0rd123", 1024);
-            var secondValue = Passhash.PasswordToPasshash("Str0ngPassw0rd123", 1024);
+            var firstValue = Passhash.PasswordToPasshash("Str0ngPassw0rd123");
+            var secondValue = Passhash.PasswordToPasshash("Str0ngPassw0rd123");
             Assert.AreEqual(firstValue, secondValue);
         }
 
         [TestMethod]
         public void NotEquality()
         {
-            var firstValue = Passhash.PasswordToPasshash("Str0ngPassw0rd123", 1024);
-            var secondValue = Passhash.PasswordToPasshash("OtherStr0ngPassw0rd123", 1024);
+            var firstValue = Passhash.PasswordToPasshash("Str0ngPassw0rd123");
+            var secondValue = Passhash.PasswordToPasshash("OtherStr0ngPassw0rd123");
             Assert.AreNotEqual(firstValue, secondValue);
         }
 
@@ -27,7 +27,7 @@ namespace InjectorGames.SharedLibrary.Tests
         public void LowerBound()
         {
             var isThrowed = false;
-            try { _ = Passhash.PasswordToPasshash("12345", 123); }
+            try { _ = Passhash.PasswordToPasshash("12345"); }
             catch { isThrowed = true; }
             Assert.IsTrue(isThrowed);
         }
@@ -35,8 +35,8 @@ namespace InjectorGames.SharedLibrary.Tests
         [TestMethod]
         public void PasswordIteration()
         {
-            var firstValue = Passhash.PasswordToPasshash("Str0ngPassw0rd123", 128);
-            var secondValue = Passhash.PasswordToPasshash("Str0ngPassw0rd123", 1024);
+            var firstValue = Passhash.PasswordToPasshash("Str0ngPassw0rd123");
+            var secondValue = Passhash.PasswordToPasshash("Str0ngPassw0rd123", 12345);
             Assert.AreNotEqual(firstValue, secondValue);
         }
 

@@ -70,9 +70,7 @@ namespace InjectorGames.SharedLibrary.Collections
                 items[y] = itemsZ;
 
                 for (int z = 0; z < sizeZ; z++)
-                {
                     itemsZ[z] = new T[sizeX];
-                }
             }
         }
 

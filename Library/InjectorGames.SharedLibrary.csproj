@@ -15,14 +15,13 @@
     <Copyright></Copyright>
     <PackageTags>injector, games, open, source, shared, development, useful, library</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <SignAssembly>false</SignAssembly>
     <DelaySign>false</DelaySign>
     <RepositoryType>Git</RepositoryType>
     <NeutralLanguage>en</NeutralLanguage>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
-    <PackageReleaseNotes>*Changed email address max value to the "64"
-*Switched to the release library version to enable code optimization</PackageReleaseNotes>
+    <PackageReleaseNotes>*Added license acceptance (NEW)</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
